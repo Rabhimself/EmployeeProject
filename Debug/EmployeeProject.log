@@ -1,0 +1,27 @@
+﻿Build started 24/02/2015 19:39:24.
+     1>Project "C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\EmployeeProject\EmployeeProject.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\EmployeeProject.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt main.c
+         main.c
+     1>c:\users\rob\documents\visual studio 2010\projects\employeeproject\employeeproject\main.c(34): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 10.0\vc\include\conio.h(128) : see declaration of 'getch'
+     1>c:\users\rob\documents\visual studio 2010\projects\employeeproject\employeeproject\main.c(71): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
+     1>c:\users\rob\documents\visual studio 2010\projects\employeeproject\employeeproject\main.c(63): warning C4101: 'counter' : unreferenced local variable
+     1>c:\users\rob\documents\visual studio 2010\projects\employeeproject\employeeproject\main.c(65): warning C4101: 'my_record' : unreferenced local variable
+       Link:
+         d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\Debug\EmployeeProject.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\EmployeeProject.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\Debug\EmployeeProject.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\Debug\EmployeeProject.lib" /MACHINE:X86 Debug\main.obj
+         LINK : C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\Debug\EmployeeProject.exe not found or not built by the last incremental link; performing full link
+         EmployeeProject.vcxproj -> C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\Debug\EmployeeProject.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\Debug\EmployeeProject.exe;#1" /manifest Debug\EmployeeProject.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\EmployeeProject.unsuccessfulbuild".
+         Touching "Debug\EmployeeProject.lastbuildstate".
+     1>Done Building Project "C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\EmployeeProject\EmployeeProject.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.29
