@@ -60,10 +60,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="employee.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="users.bin" />
+    <None Include="employees.txt" />
+    <None Include="users.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="header.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
