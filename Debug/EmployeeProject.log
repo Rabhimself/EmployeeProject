@@ -1,15 +1,14 @@
-﻿Build started 17/03/2015 15:42:16.
+﻿Build started 14/04/2015 13:49:19.
      1>Project "C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\EmployeeProject\EmployeeProject.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\EmployeeProject.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt main.c
-         main.c
-     1>c:\users\rob\documents\visual studio 2010\projects\employeeproject\employeeproject\main.c(108): warning C4047: '!=' : 'size_t' differs in levels of indirection from 'void *'
-     1>c:\users\rob\documents\visual studio 2010\projects\employeeproject\employeeproject\main.c(208): warning C4047: '=' : 'char' differs in levels of indirection from 'char [3]'
+         d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt employee.c
+         employee.c
        Link:
          d:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\Debug\EmployeeProject.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\EmployeeProject.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\Debug\EmployeeProject.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\Debug\EmployeeProject.lib" /MACHINE:X86 Debug\employee.obj
          Debug\main.obj
+         Debug\reporter.obj
          LINK : C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\Debug\EmployeeProject.exe not found or not built by the last incremental link; performing full link
          EmployeeProject.vcxproj -> C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\Debug\EmployeeProject.exe
        Manifest:
@@ -21,4 +20,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.29
+Time Elapsed 00:00:04.08

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
+#include <time.h>
 
 int getPass(char pw[]);//masks characters for password input and returns
 void doLogin();//does the login...
@@ -14,5 +15,7 @@ struct employee *loadEmployees();
 void displayNodes();
 int validateEmpID(int id, struct employee *head);
 struct employee *getEmp(FILE *ptr_myFile);
-void findEmpID(struct employee *head, int id);
-void findEmpName(struct employee *head, char const *n);
+void findEmpID(struct employee *head);
+void findEmpName(struct employee *head);
+void printEmployee(struct employee * emp);
+void reporter(struct employee *head);

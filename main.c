@@ -22,6 +22,7 @@ main()
 	struct login *loginHead;
 	struct employee *empHead;
 	
+	
 	builder();
 	loginHead = (struct login*)malloc(sizeof(struct login));
 	loginHead = loginReader(&loginHead);
@@ -144,6 +145,7 @@ char * searchLoginList(struct login *head, char *s)
 {
 	struct login *temp;
 	int i = 1;
+
 	temp = (struct login*)malloc(sizeof(struct login));
 	temp = head;
 	
@@ -170,6 +172,8 @@ void displayMenu(struct employee *eHead)
 	int choice;
 	system("cls");
 	head = eHead;
+	
+
 	do
 	{
 		system("cls");
@@ -178,7 +182,7 @@ void displayMenu(struct employee *eHead)
 		printf("3: Add an employee to registry\n");
 		printf("5: Search for an employee by name\n");
 		printf("6: Search for an employee by ID number\n");
-		printf("7: Sort employees by ID number");
+		printf("7: Department Report");
 		printf("Enter a menu option: ");
 		fflush(stdin);
 		scanf_s("%d", &choice,1);	
@@ -202,23 +206,17 @@ void displayMenu(struct employee *eHead)
 			break;
 
 		case 5:
-			printf("Enter the Employee ID to searched for: ");
-			fflush(stdin);
-			gets_s(s, 40);
-			findEmpName(head, s);
+			findEmpName(head);
 			break;
 
 		case 6:
-			printf("Enter the Employee ID to searched for: ");
-			fflush(stdin);
-			scanf_s("%d",&choice,1);
-			findEmpID(head, choice);
+			findEmpID(head);
 			
 			system("pause");
 			break;
 
 		case 7:
-			//sortList(head);
+			reporter(head);
 			break;
 
 		case 9:

@@ -1,5 +1,14 @@
 #include "header.h"
 
+struct sNode
+{
+	struct sNode *next;
+	char s[20+1];
+	int eNum;
+	double annumSal;
+	double totBonus;
+	double totOutlay;
+};
 struct employee
 {
 	int id;
@@ -16,15 +25,11 @@ struct employee
 
 	}addr;
 
-	struct date
-	{
-		int day;
-		int month;
-		int year;
-	}hireDate;
+	struct tm hireDate;
 
 	struct employee *next;
 };
+
 struct employee *loadEmployees()
 {
 	//declarations
@@ -125,9 +130,9 @@ void addEmployee(struct employee **head)
 		scanf_s("%d %d %d",&tempD, &tempM, &tempY );
 	}while((tempD < 1 || tempD > 31) ||	(tempM < 1 || tempM > 12) || (tempY < 1900 || tempY > 2015));
 
-	newNode->hireDate.day = tempD;
-	newNode->hireDate.month = tempM;
-	newNode->hireDate.year = tempY;
+	newNode->hireDate.tm_year = tempY-1900;
+	newNode->hireDate.tm_mday = tempD;
+	newNode->hireDate.tm_mon = tempM;
 
 	if((*head)->id != 0)
 	{
@@ -151,8 +156,8 @@ void displayNodes(struct employee *head)
 		printf("Employee  #%d: \n", temp->id);
 		printf("\t Name: %s\n", temp->name);
 		printf("\t dept: %s\n", temp->dept);
-		printf("\t hireDate: %d-%d-%d\n", temp->hireDate.day, temp->hireDate.month, temp->hireDate.year);
-		printf("\t salary: %d\n", temp->salary);
+		printf("\t hireDate: %d-%d-%d\n", temp->hireDate.tm_mday, temp->hireDate.tm_mon, temp->hireDate.tm_year);
+		printf("\t salary: %.2f\n", temp->salary);
 		printf("\t email: %s\n\n", temp->email);
 		temp = temp->next;
 	}
@@ -170,32 +175,42 @@ struct employee *getEmp(FILE *ptr_myFile)
 	emp->id = atoi(tempS);
 
 	fgets(tempS, 40, ptr_myFile);
+	strtok(tempS, "\n");
 	strcpy_s(emp->name, 40, tempS);
 
 	fgets(tempS, 40, ptr_myFile);
+	strtok(tempS, "\n");
 	strcpy_s(emp->addr.street, 40, tempS);
 
 	fgets(tempS, 40, ptr_myFile);
+	strtok(tempS, "\n");
 	strcpy_s(emp->addr.city, 40, tempS);
 
 	fgets(tempS, 40, ptr_myFile);
+	strtok(tempS, "\n");
 	strcpy_s(emp->addr.prov, 40, tempS);
 
 	fgets(tempS, 40, ptr_myFile);
+	strtok(tempS, "\n");
 	strcpy_s(emp->dept, 40, tempS);
 
 	fgets(tempS, 40, ptr_myFile);
 	emp->salary = atof(tempS);
 
 	fgets(tempS, 40, ptr_myFile);
+	strtok(tempS, "\n");
 	strcpy_s(emp->email, 40, tempS);
 
 	fgets(tempS, 40, ptr_myFile);
-	emp->hireDate.day = atoi(tempS);
+	emp->hireDate.tm_mday = atoi(tempS);
 	fgets(tempS, 40, ptr_myFile);
-	emp->hireDate.month = atoi(tempS);
+	emp->hireDate.tm_mon = atoi(tempS);
 	fgets(tempS, 40, ptr_myFile);
-	emp->hireDate.year = atoi(tempS);
+	emp->hireDate.tm_year = atoi(tempS) - 1900;
+	emp->hireDate.tm_min = 0;
+	emp->hireDate.tm_sec = 0;
+	emp->hireDate.tm_hour = 0;
+
 	return emp;
 }
 int validateEmpID(int id, struct employee *head)
@@ -214,12 +229,17 @@ int validateEmpID(int id, struct employee *head)
 	}
 	return 0;
 }
-void findEmpID(struct employee *head, int id)
+void findEmpID(struct employee *head)
 {
 	struct employee *temp;
+	int id;
 	FILE *ptr_myFile;
 
 	temp = head;
+
+	printf("Enter the Employee ID to searched for: ");
+	fflush(stdin);
+	scanf_s("%d", &id);
 
 	//opening my file for reading
 	fopen_s(&ptr_myFile,"employees.txt","r+");
@@ -229,12 +249,7 @@ void findEmpID(struct employee *head, int id)
 		if (id == temp->id)
 		{
 			printf("Employee FOUND! \n");
-			printf("Employee  #%d: \n", temp->id);
-			printf("\t Name: %s\n", temp->name);
-			printf("\t dept: %s\n", temp->dept);
-			printf("\t hireDate: %d-%d-%d\n", temp->hireDate.day, temp->hireDate.month, temp->hireDate.year);
-			printf("\t salary: %d\n", temp->salary);
-			printf("\t email: %s\n\n", temp->email);
+			printEmployee(temp);
 			return;
 		}
 		else	
@@ -245,13 +260,15 @@ void findEmpID(struct employee *head, int id)
 	system("pause");
 	system("cls");
 }
-void findEmpName(struct employee *head, char *n)
+void findEmpName(struct employee *head)
 {
-
+	char name[40+1];
 	struct employee *temp;
-	char *name;	
 	FILE *ptr_myFile;
 
+	printf("Enter the employee name to searched for: ");
+	fflush(stdin);
+	gets_s(name,40+1);
 
 	temp = head;
 
@@ -263,19 +280,153 @@ void findEmpName(struct employee *head, char *n)
 		if (strcmp(name, temp->name)  == 0)
 		{
 			printf("Employee FOUND! \n");
-			printf("Employee  #%d: \n", temp->id);
-			printf("\t Name: %s\n", temp->name);
-			printf("\t dept: %s\n", temp->dept);
-			printf("\t hireDate: %d-%d-%d\n", temp->hireDate.day, temp->hireDate.month, temp->hireDate.year);
-			printf("\t salary: %d\n", temp->salary);
-			printf("\t email: %s\n\n", temp->email);
+			printEmployee(temp);
+			system("pause");
 			return;
 		}
 		else	
-		temp = temp->next;
+			temp = temp->next;
 	}
 
 	printf("Employee NOT FOUND!\n");
+	system("pause");
+	system("cls");
+}
+void printEmployee(struct employee * emp)
+{
+
+	printf("Employee  #%d: \n", emp->id);
+	printf("\t Name: %s\n", emp->name);
+	printf("\t Dept: %s\n", emp->dept);
+	printf("\t HireDate: %d-%d-%d\n", emp->hireDate.tm_mday, emp->hireDate.tm_mon, emp->hireDate.tm_year + 1900);
+	printf("\t Salary: %d\n", emp->salary);
+	printf("\t Email Address: %s\n", emp->email);
+	printf("\t Address: \n");
+	printf("\t\t%s\n", emp->addr.street);
+	printf("\t\t%s\n", emp->addr.city);
+	printf("\t\t%s\n", emp->addr.prov);
+}
+void reporter(struct employee *head)
+{
+	struct employee *temp;
+	struct sNode *sTemp;
+	struct sNode *sHead;
+	int flag = 1;
+	double diff;
+	time_t now;
+
+	time(&now);
+	sTemp = (struct sNode*)malloc(sizeof(struct sNode));
+	sTemp->next = NULL;
+	temp = head;
+	sHead = sTemp;
+
+
+	//this is the first department created
+	//since the list of departments is empty, we just create one from the get go
+	strcpy(sTemp->s, temp->dept);
+	sTemp->eNum = 1;
+	sTemp->annumSal = temp->salary;
+	sTemp->totOutlay = temp->salary;
+
+	diff = difftime(now ,mktime(&temp->hireDate));
+	diff = diff/31557600;
+
+	if(diff > 10)
+		sTemp->totBonus = temp->salary * .05;
+
+	else if(diff > 5)
+		sTemp->totBonus = temp->salary * .04;
+
+	else
+		sTemp->totBonus = temp->salary * .03;
+	sTemp->totOutlay += sTemp->totBonus;
+
+	temp = temp->next;
+
+
+	//Build a linked list of nodes containing the different departments listed
+	while(temp != NULL)
+	{
+		int foundFlag = 0;
+
+		while(sTemp != NULL && foundFlag == 0)
+		{
+			if(strcmp(sTemp->s, temp->dept) == 0)
+			{
+				foundFlag = 1;
+				sTemp->eNum++;
+				sTemp->annumSal += temp->salary;
+				sTemp->totOutlay += temp->salary;
+
+				diff = difftime(now ,mktime(&temp->hireDate));
+				diff = diff/31557600;
+
+				if(diff > 10)
+					sTemp->totBonus += temp->salary * .05;
+
+				else if(diff > 5)
+					sTemp->totBonus += temp->salary * .04;
+
+				else
+					sTemp->totBonus += temp->salary * .03;
+				sTemp->totOutlay += sTemp->totBonus;
+			}
+			sTemp = sTemp->next;
+		}
+
+		sTemp = sHead;
+
+		if(foundFlag == 0)
+		{
+			
+			struct sNode *newDept;
+
+			newDept = (struct sNode*)malloc(sizeof(struct sNode));
+
+			strcpy(newDept->s, temp->dept);
+			newDept->eNum = 1;
+			newDept->annumSal = temp->salary;
+			newDept->totOutlay = temp->salary;
+			newDept->next = sTemp;
+
+			diff = difftime(now ,mktime(&temp->hireDate));
+			diff = diff/31557600;
+
+			if(diff > 10)
+				newDept->totBonus = temp->salary * .05;
+			else if(diff > 5)
+				newDept->totBonus = temp->salary * .04;
+			else
+				newDept->totBonus = temp->salary * .03;
+
+			newDept->totOutlay += newDept->totBonus;
+
+			sHead = newDept;
+			foundFlag = 1;
+		}
+
+		sTemp = sHead;
+		temp=temp->next;
+	}
+
+	
+	while(sTemp != NULL)
+	{
+		struct sNode *freeNode;
+
+		printf("Department: %s \n  ", sTemp->s);
+		printf(" Number of Staff: %d \n", sTemp->eNum);
+		printf(" Total Salary per annum: %.2f \n", sTemp->annumSal);
+		printf(" Total Bonuses per annum: %.2f \n", sTemp->totBonus);
+		printf("Total Financial Outlay%.2f \n\n", sTemp->totOutlay);
+
+		freeNode = sTemp;
+		sTemp = sTemp->next;
+		free(freeNode);
+	}
+
+
 	system("pause");
 	system("cls");
 }
