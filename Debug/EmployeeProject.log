@@ -1,4 +1,4 @@
-﻿Build started 14/04/2015 13:49:19.
+﻿Build started 21/04/2015 15:29:53.
      1>Project "C:\Users\Rob\documents\visual studio 2010\Projects\EmployeeProject\EmployeeProject\EmployeeProject.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\EmployeeProject.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -20,4 +20,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.08
+Time Elapsed 00:00:12.65

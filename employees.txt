@@ -1,47 +1,3 @@
-100
-Peter Gibbons
-768 32nd Street
-Austin
-Texas
-Software
-8000.00
-PeterGibbons@Initech.com
-4
-7
-2008
-101
-Michael Bolton
-396 Some Road
-Austin
-Texas
-Software
-7500.00
-NotActuallyMichaelBolton@Initech.com
-1
-24
-2006
-102
-Samir Nagheenanajar
-Missions of Sunbow, Unit D
-Austin
-Texas
-Software
-7499.00
-SamirN@Initech.com
-1
-25
-2006
-103
-Milton Waddams
-101 Fireside Lane
-Austin
-Texas
-Human Resources
-5000.00
-xXSlimlineFanXx@Initech.com
-13
-8
-2008
 104
 Tom Smykowski
 101 Redundant Drive
@@ -53,7 +9,7 @@ TomSmykowskey@Initech.com
 26
 5
 2007
-105
+103
 Milton Waddams
 101 Fireside Lane
 Austin
@@ -63,4 +19,37 @@ Human Resources
 xXSlimlineFanXx@Initech.com
 13
 8
+2008
+102
+Samir Nagheenanajar
+Missions of Sunbow, Unit D
+Austin
+Texas
+Software
+7499.00
+SamirN@Initech.com
+1
+25
+2006
+101
+Michael Bolton
+396 Some Road
+Austin
+Texas
+Software
+7500.00
+NotActuallyMichaelBolton@Initech.com
+1
+24
+2006
+100
+Peter Gibbons
+768 32nd Street
+Austin
+Texas
+Software
+8000.00
+PeterGibbons@Initech.com
+4
+7
 2008

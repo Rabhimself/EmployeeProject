@@ -60,7 +60,6 @@ int getPass(char pw[])
 	pass[6] = '\0';
 	return strcmp(pw,pass);
 }
-
 //linked list of logins will check against an entered PW
 void doLogin(struct login *head)
 {
@@ -86,7 +85,6 @@ void doLogin(struct login *head)
 	}
 
 }
-
 struct login *loginReader(struct login **head)
 {
 	struct login *firstNode;
@@ -140,7 +138,6 @@ void builder()
 
 	fclose(ptr_myfile);
 }
-
 char * searchLoginList(struct login *head, char *s)
 {
 	struct login *temp;
@@ -164,25 +161,32 @@ char * searchLoginList(struct login *head, char *s)
 	}
 	return NULL;
 }
-
 void displayMenu(struct employee *eHead)
 {
 	struct employee *head;
-	char s[40+1];
 	int choice;
 	system("cls");
 	head = eHead;
-	
 
 	do
 	{
-		system("cls");
-		printf("1: Display all employees\n");
+		/*
+		1) Add employee
+		2) Display employee details
+		3) Update employee
+		4) Delete employee
+		5) Display all employees by department
+		6) Employee Report
+		*/
 
+
+		system("cls");
+		printf("1: Add employee\n");
+		printf("2: Delete Employee\n");
 		printf("3: Add an employee to registry\n");
-		printf("5: Search for an employee by name\n");
+		printf("5: Display Employees by Department\n");
 		printf("6: Search for an employee by ID number\n");
-		printf("7: Department Report");
+		printf("7: Department Report\n");
 		printf("Enter a menu option: ");
 		fflush(stdin);
 		scanf_s("%d", &choice,1);	
@@ -190,15 +194,33 @@ void displayMenu(struct employee *eHead)
 		switch(choice)
 		{
 		case 1:
-			displayNodes(head);
+			addEmployee(&head);
 			break;
 
 		case 2:
-			//addToStart(&head);
+			deleteEmp(&head, getEmpID());
 			break;
 
 		case 3:
-			addEmployee(&head);
+			do
+			{
+				printf("1) Find Employee by Name\n ");
+				printf("2) Find Employee by ID\n ");
+				printf("Selection:");
+				fflush(stdin);
+				scanf_s("%d", &choice,1);
+			}while(choice != 1 && choice != 2);
+
+			switch(choice)
+			{
+				case 1:
+					updateEmployee(findEmpName(head, getEmpName()));
+					break;
+				case 2:
+					updateEmployee(findEmpID(head, getEmpID()));
+					break;
+
+			}
 			break;
 
 		case 4:
@@ -206,12 +228,12 @@ void displayMenu(struct employee *eHead)
 			break;
 
 		case 5:
-			findEmpName(head);
+			listEmployees(head);
 			break;
 
 		case 6:
-			findEmpID(head);
 			
+			findEmpID(head, getEmpID());
 			system("pause");
 			break;
 
@@ -228,37 +250,3 @@ void displayMenu(struct employee *eHead)
 	}while(choice != 9);
 
 }
-
-
-
-/*
-void list_bubble_sort(EMP_NODE **head)
-{
-	int done = 0;         // True if no swaps were made in a pass
-
-	// Don't try to sort empty or single-node lists
-	if (*head == NULL || (*head)->next == NULL) return;
-
-	while (!done) {
-		EMP_NODE **pv = head;            // "source" of the pointer to the
-		// current node in the list struct
-		EMP_NODE *nd = *head;            // local iterator pointer
-		EMP_NODE *nx = (*head)->next;  // local next pointer
-
-		done = 1;
-
-		while (nx) {
-
-			if (nd->empId > nx->empId) {
-				nd->next = nx->next;
-				nx->next = nd;
-				*pv = nx;
-
-				done = 0;
-			}
-			pv = &nd->next;
-			nd = nx;
-			nx = nx->next;
-		}
-	}
-}*/
